@@ -1,0 +1,52 @@
+*************************** 
+Studies in citalopram 
+*************************** 
+There are 6 studies 
+The knots for i= 1 are: 10 
+ The knots for i= 1 are: 20 
+ The knots for i= 1 are: 50 
+*************************** 
+Studies in escitalopram 
+*************************** 
+There are 12 studies 
+The knots for i= 2 are: 5 
+ The knots for i= 2 are: 9 
+ The knots for i= 2 are: 23 
+ERROR in Spline : missing value where TRUE/FALSE needed 
+*************************** 
+Studies in fluoxetine 
+*************************** 
+There are 13 studies 
+The knots for i= 3 are: 10 
+ The knots for i= 3 are: 20 
+ The knots for i= 3 are: 50 
+*************************** 
+Studies in mirtazapine 
+*************************** 
+There are 4 studies 
+The knots for i= 4 are: 13 
+ The knots for i= 4 are: 25 
+ The knots for i= 4 are: 63 
+*************************** 
+Studies in paroxetine 
+*************************** 
+There are 21 studies 
+The knots for i= 5 are: 8 
+ The knots for i= 5 are: 17 
+ The knots for i= 5 are: 42 
+ERROR in Spline : missing value where TRUE/FALSE needed 
+*************************** 
+Studies in sertraline 
+*************************** 
+There are 2 studies 
+The knots for i= 6 are: 24 
+ The knots for i= 6 are: 49 
+ The knots for i= 6 are: 122 
+*************************** 
+Studies in venlafaxine 
+*************************** 
+There are 7 studies 
+The knots for i= 7 are: 37 
+ The knots for i= 7 are: 74 
+ The knots for i= 7 are: 185 
+ERROR in Spline : missing value where TRUE/FALSE needed 

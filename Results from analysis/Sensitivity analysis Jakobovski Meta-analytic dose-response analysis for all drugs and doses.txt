@@ -1,0 +1,115 @@
+
+ 
+ 
+ DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE using Jakubovski AND PLACEBO 
+ 
+ 
+From all analyses I excluded studies with zero events and studies with less than 2 different doses evaluated.
+ 
+    Active drugs as well as Placebo are included.
+
+ There are 69 studies comparing all doses . 
+which include the drugs: placebo fluoxetine paroxetine citalopram escitalopram sertraline 
+
+The knots I used in the splines are at doses 10,20,30 mg
+-----------------------------------------------
+
+-------- RESPONSE -----------------------------
+
+-------- Splines response -----------------------------
+
+******For the spline model we have in total 60 studiesCall:  dosresmeta(formula = logRR ~ rcs(jakubovski_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 58.9967 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0121      0.0016   7.6805    0.0000    0.0090    0.0152  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0308      0.0058  -5.2730    0.0000   -0.0422   -0.0193  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                           Std. Dev                                      Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0069  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0126                                        -1
+
+60 studies, 82 values, 2 fixed and 3 random-effects parameters
+ logLik      AIC      BIC  
+-1.0238  12.0477  23.9578  
+
+
+-----------------------------------------------
+
+-------- DROPOUT  -----------------------------
+
+******For the linear model there are 59 studies 
+
+-------- Splines dropout -----------------------------
+******For the splines model we have in total 59 studiesCall:  dosresmeta(formula = logRRdrop ~ rcs(jakubovski_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_total, n = No_randomised, 
+    data = mymoredata, se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 9.8326 (df = 2), p-value = 0.0073
+
+Fixed-effects coefficients
+                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
+rcs(jakubovski_ddd, knots)jakubovski_ddd    -0.0062      0.0023  -2.6525    0.0080   -0.0108   -0.0016  **
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0244      0.0087   2.8216    0.0048    0.0075    0.0414  **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                           Std. Dev                                      Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0105  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0023                                        -1
+
+59 studies, 85 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-32.5780   75.1561   87.2503  
+
+
+-----------------------------------------------
+
+-------- DROPOUT DUE TO AE --------------------
+
+-------- Splines dropout AE -----------------------------
+
+******For the splines model we have in total 52 studies
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(jakubovski_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_sideeffects, 
+    n = No_randomised, data = mymoredata, se = selogRRdropAE, 
+    proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 43.7766 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0246      0.0047   5.2188    0.0000    0.0154    0.0338  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0170      0.0187  -0.9078    0.3640   -0.0537    0.0197     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                           Std. Dev                                      Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0096  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0332                                   -0.7111
+
+52 studies, 73 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-70.9592  151.9184  163.2318  
+

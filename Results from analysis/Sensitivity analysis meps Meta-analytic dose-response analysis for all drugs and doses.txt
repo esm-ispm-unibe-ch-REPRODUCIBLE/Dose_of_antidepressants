@@ -1,0 +1,112 @@
+
+ 
+ 
+ DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE using meps AND PLACEBO 
+ 
+ 
+From all analyses I excluded studies with zero events and studies with less than 2 different doses evaluated.
+ 
+    Active drugs as well as Placebo are included.
+
+ There are 69 studies comparing all doses . 
+which include the drugs: placebo fluoxetine paroxetine citalopram escitalopram sertraline 
+
+The knots I used in the splines are at doses 10,20,30 mg
+-----------------------------------------------
+
+-------- RESPONSE -----------------------------
+
+-------- Splines response -----------------------------
+
+******For the spline model we have in total 60 studiesCall:  dosresmeta(formula = logRR ~ rcs(meps_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 67.3396 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                               Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(meps_ddd, knots)meps_ddd     0.0113      0.0014   8.1525    0.0000    0.0086    0.0141  ***
+rcs(meps_ddd, knots)meps_ddd'   -0.0220      0.0039  -5.7236    0.0000   -0.0296   -0.0145  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                               Std. Dev                          Corr
+rcs(meps_ddd, knots)meps_ddd     0.0054  rcs(meps_ddd, knots)meps_ddd
+rcs(meps_ddd, knots)meps_ddd'    0.0056                            -1
+
+60 studies, 82 values, 2 fixed and 3 random-effects parameters
+ logLik      AIC      BIC  
+ 2.9730   4.0541  15.9642  
+
+
+-----------------------------------------------
+
+-------- DROPOUT  -----------------------------
+
+-------- Splines dropout -----------------------------
+******For the splines model we have in total 59 studiesCall:  dosresmeta(formula = logRRdrop ~ rcs(meps_ddd, knots), id = Study_No, 
+    type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
+    se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 18.9595 (df = 2), p-value = 0.0001
+
+Fixed-effects coefficients
+                               Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(meps_ddd, knots)meps_ddd    -0.0072      0.0022  -3.2574    0.0011   -0.0115   -0.0029   **
+rcs(meps_ddd, knots)meps_ddd'    0.0198      0.0046   4.3291    0.0000    0.0108    0.0287  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                               Std. Dev                          Corr
+rcs(meps_ddd, knots)meps_ddd     0.0107  rcs(meps_ddd, knots)meps_ddd
+rcs(meps_ddd, knots)meps_ddd'    0.0120                            -1
+
+59 studies, 85 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-30.6397   71.2795   83.3737  
+
+
+-----------------------------------------------
+
+-------- DROPOUT DUE TO AE --------------------
+
+-------- Splines dropout AE -----------------------------
+
+******For the splines model we have in total 52 studies
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(meps_ddd, knots), id = Study_No, 
+    type = type, cases = Dropouts_sideeffects, n = No_randomised, 
+    data = mymoredata, se = selogRRdropAE, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 55.5679 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                               Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(meps_ddd, knots)meps_ddd     0.0180      0.0043   4.2257    0.0000    0.0097    0.0264  ***
+rcs(meps_ddd, knots)meps_ddd'   -0.0036      0.0117  -0.3027    0.7621   -0.0266    0.0195     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                               Std. Dev                          Corr
+rcs(meps_ddd, knots)meps_ddd     0.0065  rcs(meps_ddd, knots)meps_ddd
+rcs(meps_ddd, knots)meps_ddd'    0.0237                            -1
+
+52 studies, 73 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-68.2269  146.4539  157.7673  
+
