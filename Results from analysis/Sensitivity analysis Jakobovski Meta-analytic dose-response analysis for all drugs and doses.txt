@@ -11,7 +11,7 @@ From all analyses I excluded studies with zero events and studies with less than
  There are 69 studies comparing all doses . 
 which include the drugs: placebo fluoxetine paroxetine citalopram escitalopram sertraline 
 
-The knots I used in the splines are at doses 10,20,30 mg
+The knots I used in the splines are at doses 10,20,50 mg
 -----------------------------------------------
 
 -------- RESPONSE -----------------------------

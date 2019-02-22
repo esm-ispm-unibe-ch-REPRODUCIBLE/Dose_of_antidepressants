@@ -24,7 +24,7 @@ DOSEj1=cleandosresdata.fun(DOSEj1,Study_No,logRRdropAE,Dropouts_sideeffects,No_r
 ##REPORTING
 cat("\n", paste("There are", length(unique(DOSEj1$Study_No)), "studies comparing all doses .", "\n"))
 cat("which include the drugs:", unique(DOSEj1$Drug), "\n")
-cat("\nThe knots I used in the splines are at doses 10,20,30 mg")
+cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
 knots=c(10,20,50)
 ################
 #1. response

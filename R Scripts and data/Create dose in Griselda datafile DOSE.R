@@ -78,15 +78,8 @@ DOSEOTHERs=DOSE[!is.na(match(DOSE$Drug,OTHERs)),]
 DOSEOTHERs=exludesinglearmsdata.fun(DOSEOTHERs,Study_No)
 
 
-#COPY THE DATABASE DOSESSRIs to DOSE TO THE DOSEj to be used for the jakubovski_ddd analysis
 
-DOSEj=DOSESSRIs
 
-# Create two other datasets according to the hayasaka_ddd dose 
-DOSEless30=DOSESSRIs[with(DOSESSRIs,c(hayasaka_ddd<30 & hayasaka_ddd>0)),] #doses only very low, below 30
-DOSEless30=exludesinglearmsdata.fun(DOSEless30,Study_No)
-DOSEtheur=DOSESSRIs[with(DOSESSRIs,c(hayasaka_ddd>=20  & hayasaka_ddd<=80)),]#doses between 20 and 80
-DOSEtheur=exludesinglearmsdata.fun(DOSEtheur,Study_No)
 
 ################################################################################################
 #  Produce per arm LOG RR for RESPONSE, DROPOUT AND DROPOUT DUE TO AE
@@ -96,17 +89,8 @@ DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Responders,No_randomised,Study
 DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
 DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
 
-DOSEless30=createdatasetdoseresponse.fun(DOSEless30,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
-DOSEless30=createdatasetdoseresponse.fun(DOSEless30,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
-DOSEless30=createdatasetdoseresponse.fun(DOSEless30,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
-
-DOSEtheur=createdatasetdoseresponse.fun(DOSEtheur,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
-DOSEtheur=createdatasetdoseresponse.fun(DOSEtheur,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
-DOSEtheur=createdatasetdoseresponse.fun(DOSEtheur,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
-
-DOSEj=createdatasetdoseresponse.fun(DOSEj,Responders,No_randomised,Study_No,jakubovski_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
-DOSEj=createdatasetdoseresponse.fun(DOSEj,Dropouts_total,No_randomised,Study_No,jakubovski_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
-DOSEj=createdatasetdoseresponse.fun(DOSEj,Dropouts_sideeffects,No_randomised,Study_No,jakubovski_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+#COPY THE DATABASE DOSESSRIs to DOSE TO THE DOSEj to be used for the jakubovski_ddd analysis
+DOSEj=DOSESSRIs
 
 DOSEall=createdatasetdoseresponse.fun(DOSEall,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
 DOSEall=createdatasetdoseresponse.fun(DOSEall,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")

@@ -1,14 +1,14 @@
 *************************** 
 Studies in citalopram 
 *************************** 
-There are 8 studies 
+There are 6 studies 
 The knots for i= 1 are: 10 
  The knots for i= 1 are: 20 
  The knots for i= 1 are: 50 
 *************************** 
 Studies in escitalopram 
 *************************** 
-There are 11 studies 
+There are 12 studies 
 The knots for i= 2 are: 5 
  The knots for i= 2 are: 9 
  The knots for i= 2 are: 23 
@@ -36,14 +36,14 @@ The knots for i= 5 are: 8
 *************************** 
 Studies in sertraline 
 *************************** 
-There are 6 studies 
+There are 2 studies 
 The knots for i= 6 are: 24 
  The knots for i= 6 are: 49 
  The knots for i= 6 are: 122 
 *************************** 
 Studies in venlafaxine 
 *************************** 
-There are 6 studies 
+There are 7 studies 
 The knots for i= 7 are: 37 
  The knots for i= 7 are: 74 
  The knots for i= 7 are: 185 

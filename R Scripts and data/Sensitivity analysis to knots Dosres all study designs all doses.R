@@ -51,6 +51,8 @@ for(j in 1:dim(knotsmatrix)[1]){
           #3. dropout due to AE
           ###############################
           mymoredata=DOSE[DOSE$excdropAE==F,] 
+          mymoredata$Dropouts_sideeffects=replace(mymoredata$Dropouts_sideeffects, mymoredata$Dropouts_sideeffects==0,0.05)#correct for zero events in some arms
+            
             doseresRR=dosresmeta(formula=logRRdropAE~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
             print(summary(doseresRR))
             newdata=data.frame(hayasaka_ddd=seq(0,80,1))
@@ -63,9 +65,9 @@ for(j in 1:dim(knotsmatrix)[1]){
             with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 }
 
-### Sensitivity analysis with 5 knots
+### Sensitivity analysis with 4 knots
 
-knots=c(10,20,30,40,50,60)
+knots=c(10,20,30,40)
 knots=as.vector(knots)
 text=paste("knots at:", toString(knots))  
 text
@@ -104,6 +106,8 @@ with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 #3. dropout due to AE
 ###############################
 mymoredata=DOSE[DOSE$excdropAE==F,] 
+mymoredata$Dropouts_sideeffects=replace(mymoredata$Dropouts_sideeffects, mymoredata$Dropouts_sideeffects==0,0.05)#correct for zero events in some arms
+
 doseresRR=dosresmeta(formula=logRRdropAE~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
 print(summary(doseresRR))
 newdata=data.frame(hayasaka_ddd=seq(0,80,1))

@@ -113,3 +113,28 @@ cleandosresdata.fun=function(dataset,studyid,logRR,r,n,dose,nametoexclude="toexc
   dataset
 }
 
+######################
+
+#this function clears the data out of problems that may make the code in dose-reponse not running
+
+cleandosresdata1.fun=function(dataset,studyid,logRR,r,n,dose,nametoexclude="toexclude")
+{ #same as function before but does not exclude zero events
+  # this function takes a database and exclude studies that will cause problemsin fiting the dosres model for a particular outcome
+  # It return the same database but in the end it has a variable that tells you which studies to exclude
+  # Give a name to that column in the nametoexclude variable
+  originaldimension=dim(dataset)[2]
+  r=eval(substitute(r), dataset)
+  logRR=eval(substitute(logRR), dataset)
+  dose=eval(substitute(dose), dataset)
+  n=eval(substitute(n), dataset)
+  studyid=eval(substitute(studyid), dataset)
+  #exlude missing logRR
+  out0=unique(studyid[is.na(logRR)])
+  #exclude those studies with the same dose in all arms
+  out3=unique(studyid)[tapply(dose,studyid,max)==tapply(dose,studyid,min)]
+  toexclude=as.data.frame(studyid%in%c(out0,out3))
+  names(toexclude)=c(nametoexclude)
+  #exclude single arm studies
+  dataset=cbind.data.frame(dataset,toexclude)
+  dataset
+}

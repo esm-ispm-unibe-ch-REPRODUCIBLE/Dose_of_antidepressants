@@ -5,7 +5,8 @@
 ##############################################################################################
 # Create the data
 ##################
-DOSE=DOSEall# all 7 drugs analysed
+# all 7 drugs analysed
+DOSE=DOSEall[!is.na(DOSEall$No_randomised),]
 
 tableDRUGsStudy=with(DOSE,table(Study_No,Drug))
 idtokeep1=unique(DOSE$Study_No)[apply(tableDRUGsStudy,1,max)>=2]#keep studies with at least 2 doses of the same drug
@@ -40,12 +41,7 @@ for(i in 1:length(dis))
   studis=unique(DOSEsameDrug$Study_No[DOSEsameDrug$Drug==dis[i]])
   mymoredata=DOSEsameDrug[!is.na(match(DOSEsameDrug$Study_No,studis)),]
   mymoredata=mymoredata[!is.na(mymoredata$logRR),]
-  mymoredata=mymoredata[!is.na(match(mymoredata$Drug, c(dis[i],"placebo"))),]
-
-  a=table(mymoredata$Study_No)
-  out=names(a[a<2])
-  mymoredata=mymoredata[is.na(match(mymoredata$Study_No,out)),]
-  
+  mymoredata=exludesinglearmsdata.fun(mymoredata,studyid = Study_No)
   cat(paste("There are", length(unique(mymoredata$Study_No)), "studies", "\n"))
   
   if(max(mymoredata$logRR,na.rm = T)==0 | length(unique(mymoredata$Study_No))<2){cat(paste("not enough efficacy data"),"\n")}
@@ -81,9 +77,7 @@ for(i in 1:length(dis))
       #  mymoredata$logRR[2]<-mymoredata$logRR[2]-mymoredata$logRR[1]
        # mymoredata$selogRR[1]<-NA
        # }
-    
-    mymoredata=mymoredata[!is.na(mymoredata$logRR),]
-    mymoredata=exludesinglearmsdata.fun(mymoredata,studyid = Study_No)
+  
     
     #cubic splines
     tryCatch({#start tryCatch to avoid stopping with stupid errors
@@ -113,19 +107,18 @@ for(i in 1:length(dis))
   cat("***************************","\n")
   cat(paste("Studies in",dis[i],"\n"))
   cat("***************************","\n")
+
   studis=unique(DOSEsameDrug$Study_No[DOSEsameDrug$Drug==dis[i]])
   mymoredata=DOSEsameDrug[!is.na(match(DOSEsameDrug$Study_No,studis)),]
   mymoredata=mymoredata[!is.na(mymoredata$logRRdrop),]
-  mymoredata=mymoredata[!is.na(match(mymoredata$Drug, c(dis[i],"placebo"))),]
+  mymoredata=exludesinglearmsdata.fun(mymoredata,studyid = Study_No)
   
-  a=table(mymoredata$Study_No)
-  out=names(a[a<2])
-  mymoredata=mymoredata[is.na(match(mymoredata$Study_No,out)),]
   
   cat(paste("There are", length(unique(mymoredata$Study_No)), "studies", "\n"))
   
-  if(max(mymoredata$logRRdrop,na.rm = T)==0 | length(unique(mymoredata$Study_No))<2){cat(paste("not enough efficacy data"),"\n")}
+  if(max(mymoredata$logRRdrop,na.rm = T)==0 | length(unique(mymoredata$Study_No))<2){cat(paste("not enough dropout data"),"\n")}
   else{
+    
     maxdose=max(mymoredata$Dose_delivered_mean)
     mindose=min(mymoredata$Dose_delivered_mean)
     
@@ -147,14 +140,13 @@ for(i in 1:length(dis))
     if(dis[i]=="sertraline") xmax=80/0.41
     if(dis[i]=="venlafaxine")xmax=400
     
-    
     cat(paste("The knots for i=", i, "are:",round(knots), "\n"))
     text=paste(length(studis),"studies with",unique(mymoredata$Drug)[1],"vs",unique(mymoredata$Drug)[-1])
     
     
     #cubic splines
     tryCatch({#start tryCatch to avoid stopping with stupid errors
-      doseresRR=dosresmeta(formula=logRRdrop~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRRdrop,data=mymoredata)
+      doseresRR=dosresmeta(formula=logRRdrop~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata[,])
       summary(doseresRR)
       newdata=data.frame(Dose_delivered_mean=seq(0,maxdose,1))
       xref=min(mymoredata$Dose_delivered_mean)
@@ -173,25 +165,22 @@ sink()
 ## dropout due to AE
 ############################
 
-sink("Per drug dose dropout due to AE.txt")
-pdf("Per drug dose dropout due to AE.pdf")
-for(i in 1:length(dis))
+sink("Per drug dose dropout AE.txt")
+pdf("Per drug dose dropout AE.pdf")
+for(i in 1:length(dis)) 
 {#iterate in drugs
   cat("***************************","\n")
   cat(paste("Studies in",dis[i],"\n"))
   cat("***************************","\n")
+  
   studis=unique(DOSEsameDrug$Study_No[DOSEsameDrug$Drug==dis[i]])
   mymoredata=DOSEsameDrug[!is.na(match(DOSEsameDrug$Study_No,studis)),]
   mymoredata=mymoredata[!is.na(mymoredata$logRRdropAE),]
-  mymoredata=mymoredata[!is.na(match(mymoredata$Drug, c(dis[i],"placebo"))),]
-  
-  a=table(mymoredata$Study_No)
-  out=names(a[a<2])
-  mymoredata=mymoredata[is.na(match(mymoredata$Study_No,out)),]
+  mymoredata=exludesinglearmsdata.fun(mymoredata,studyid = Study_No)
   
   cat(paste("There are", length(unique(mymoredata$Study_No)), "studies", "\n"))
   
-  if(max(mymoredata$logRRdropAE,na.rm = T)==0 | length(unique(mymoredata$Study_No))<2){cat(paste("not enough efficacy data"),"\n")}
+  if(max(mymoredata$logRRdropAE,na.rm = T)==0 | length(unique(mymoredata$Study_No))<2){cat(paste("not enough dropout data"),"\n")}
   else{
     maxdose=max(mymoredata$Dose_delivered_mean)
     mindose=min(mymoredata$Dose_delivered_mean)
@@ -215,19 +204,22 @@ for(i in 1:length(dis))
     if(dis[i]=="venlafaxine")xmax=400
     
     
+    
     cat(paste("The knots for i=", i, "are:",round(knots), "\n"))
     text=paste(length(studis),"studies with",unique(mymoredata$Drug)[1],"vs",unique(mymoredata$Drug)[-1])
     
     
     #cubic splines
+    mymoredata$Dropouts_sideeffects=replace(mymoredata$Dropouts_sideeffects, mymoredata$Dropouts_sideeffects==0,0.05)#correct for zero events in some arms
+    
     tryCatch({#start tryCatch to avoid stopping with stupid errors
-      doseresRR=dosresmeta(formula=logRRdropAE~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRRdropAE,data=mymoredata)
+      doseresRR=dosresmeta(formula=logRRdropAE~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
       summary(doseresRR)
       newdata=data.frame(Dose_delivered_mean=seq(0,maxdose,1))
       xref=min(mymoredata$Dose_delivered_mean)
       with(predict(doseresRR, newdata,xref, exp = TRUE), {
         plot(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),pred, log = "y", type = "l",
-             xlim = c(0, xmax), ylim = c(.5, 5),xlab="Actual mean dose",ylab="RR",main=c("Splines",text))
+             xlim = c(0, xmax), ylim = c(.5, 5),xlab="Actual mean dose",ylab="RR dropout AE",main=c("Splines",text))
         matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
       with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
     

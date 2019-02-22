@@ -3,27 +3,31 @@
 ##################################################################
 #     ANALYSIS INCLUDING all dose and all drugs
 #################################################################
-DOSE=DOSESSRIs
+
 pdf("Meta-analytic dose plots for all drugs and doses.pdf")
 sink("Meta-analytic dose-response analysis for all drugs and doses.txt")
 
-cat("\n \n \n DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE AND PLACEBO \n \n \n")
-cat("From all analyses I excluded studies with zero events and studies with less than 2 different doses evaluated.\n 
-    Active drugs as well as Placebo are included.\n")
 
 #####CLEAN THE DATA####
 
 #Create 3 index variables to exlcude studies per outcome (response, dropout, dropoutAE) that do not contribute to the dose-response (e.g. 0 events, different doses etc)
-DOSE=cleandosresdata.fun(DOSE,Study_No,logRR,Responders,No_randomised,hayasaka_ddd,"exc")
-DOSE=cleandosresdata.fun(DOSE,Study_No,logRRdrop,Dropouts_total,No_randomised,hayasaka_ddd,"excdrop")
-DOSE=cleandosresdata.fun(DOSE,Study_No,logRRdropAE,Dropouts_sideeffects,No_randomised,hayasaka_ddd,"excdropAE")
+DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRR,Responders,No_randomised,hayasaka_ddd,"exc")
+DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRRdrop,Dropouts_total,No_randomised,hayasaka_ddd,"excdrop")
+DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRRdropAE,Dropouts_sideeffects,No_randomised,hayasaka_ddd,"excdropAE")
+
+DOSE=DOSESSRIs
+
+cat("\n \n \n DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE AND PLACEBO \n \n \n")
+cat("From all analyses I excluded studies with less than 2 different doses evaluated.\n 
+    Active drugs as well as Placebo are included.\n")
+
 ##REPORTING
 write.csv(DOSE, "DOSEmainanalysis.csv")
 cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies comparing all doses .", "\n"))
 cat("which include the drugs:", unique(DOSE$Drug), "\n")
-cat("\nThe knots I used in the splines are at doses 10,20,30 and 60 mg")
-knots=c(10,20,30)
-DOSESSRIs=DOSE
+cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
+knots=c(10,20,50) 
+
 ################
 #1. response
 ###############
@@ -81,6 +85,7 @@ cat("******For the splines model we have in total",length(unique(mymoredata$Stud
 cat("\n-----------------------------------------------\n")
 cat("\n-------- DROPOUT DUE TO AE --------------------\n")
 mymoredata=DOSE[DOSE$excdropAE==F,] 
+mymoredata$Dropouts_sideeffects=replace(mymoredata$Dropouts_sideeffects, mymoredata$Dropouts_sideeffects==0,0.05)#correct for zero events in some arms
 
 cat("\n-------- Splines dropout AE -----------------------------\n")
 #cubic splines
@@ -98,5 +103,6 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   #with(mymoredata,points(hayasaka_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
+  
 dev.off()
 sink()
