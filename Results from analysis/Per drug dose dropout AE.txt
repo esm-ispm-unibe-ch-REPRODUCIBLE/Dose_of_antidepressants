@@ -26,6 +26,15 @@ There are 4 studies
 The knots for i= 4 are: 13 
  The knots for i= 4 are: 25 
  The knots for i= 4 are: 63 
+
+******Predicted RR and 95% CI with spline model for Mirtazapine dropoutAE****** 
+  dose       RR    lowCI   highCI
+1  0.0 1.000000 1.000000 1.000000
+2  7.5 1.234909 1.045659 1.458409
+3 15.0 1.524724 1.093552 2.125903
+4 30.0 2.165504 1.256921 3.730871
+5 45.0 2.543701 1.535853 4.212913
+6 60.0 2.661705 1.439783 4.920654
 *************************** 
 Studies in paroxetine 
 *************************** 
@@ -47,3 +56,13 @@ There are 7 studies
 The knots for i= 7 are: 37 
  The knots for i= 7 are: 74 
  The knots for i= 7 are: 185 
+
+******Predicted RR and 95% CI with spline model for Venlafaxine dropoutAE****** 
+   dose       RR    lowCI   highCI
+1   0.0 1.000000 1.000000 1.000000
+2  37.5 1.525371 1.245999 1.867382
+3  75.0 2.244473 1.533343 3.285409
+4 150.0 3.078322 1.954619 4.848038
+5 225.0 3.209003 2.092598 4.921011
+6 300.0 3.313419 2.016788 5.443678
+7 375.0 3.421232 1.814200 6.451784

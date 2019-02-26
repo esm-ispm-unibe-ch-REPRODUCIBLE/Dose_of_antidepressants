@@ -90,7 +90,22 @@ for(i in 1:length(dis))
              xlim = c(0, xmax), ylim = c(.5, 5),xlab="Actual mean dose",ylab="RR",main=c("Splines",text))
         matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
       with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
-  
+    
+    #printing predictions for venlafaxine
+    if(dis[i]=="venlafaxine"){
+      cat("\n******Predicted RR and 95% CI with spline model for Venlafaxine response****** \n")
+      predictions=predict(doseresRR, data.frame(Dose_delivered_mean=c(0,37.5,75,150,225,300,375)),xref, exp = TRUE)[,c(1,3,4,5)]
+      names(predictions)<-c("dose","RR","lowCI", "highCI")
+      print(predictions)}
+    #printing predictions for venlafaxine
+    if(dis[i]=="mirtazapine"){
+      cat("\n******Predicted RR and 95% CI with spline model for Mirtazapine response****** \n")
+      predictions=predict(doseresRR, data.frame(Dose_delivered_mean=c(0,7.5,15,30,45,60)),xref, exp = TRUE)[,c(1,3,4,5)]
+      names(predictions)<-c("dose","RR","lowCI", "highCI")
+      print(predictions)}
+    
+    
+    
   }#end else
 }
 dev.off()
@@ -156,6 +171,20 @@ for(i in 1:length(dis))
         matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
       with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
     
+    #printing predictions for venlafaxine
+    if(dis[i]=="venlafaxine"){
+      cat("\n******Predicted RR and 95% CI with spline model for Venlafaxine dropout****** \n")
+      predictions=predict(doseresRR, data.frame(Dose_delivered_mean=c(0,37.5,75,150,225,300,375)),xref, exp = TRUE)[,c(1,3,4,5)]
+      names(predictions)<-c("dose","RR","lowCI", "highCI")
+      print(predictions)}
+    #printing predictions for venlafaxine
+    if(dis[i]=="mirtazapine"){
+      cat("\n******Predicted RR and 95% CI with spline model for Mirtazapine dropout****** \n")
+      predictions=predict(doseresRR, data.frame(Dose_delivered_mean=c(0,7.5,15,30,45,60)),xref, exp = TRUE)[,c(1,3,4,5)]
+      names(predictions)<-c("dose","RR","lowCI", "highCI")
+      print(predictions)}
+    
+    
   }#end else
 }
 
@@ -204,7 +233,6 @@ for(i in 1:length(dis))
     if(dis[i]=="venlafaxine")xmax=400
     
     
-    
     cat(paste("The knots for i=", i, "are:",round(knots), "\n"))
     text=paste(length(studis),"studies with",unique(mymoredata$Drug)[1],"vs",unique(mymoredata$Drug)[-1])
     
@@ -222,7 +250,21 @@ for(i in 1:length(dis))
              xlim = c(0, xmax), ylim = c(.5, 5),xlab="Actual mean dose",ylab="RR dropout AE",main=c("Splines",text))
         matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
       with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
+      
+    #printing predictions for venlafaxine
+      if(dis[i]=="venlafaxine"){
+    cat("\n******Predicted RR and 95% CI with spline model for Venlafaxine dropoutAE****** \n")
+    predictions=predict(doseresRR, data.frame(Dose_delivered_mean=c(0,37.5,75,150,225,300,375)),xref, exp = TRUE)[,c(1,3,4,5)]
+    names(predictions)<-c("dose","RR","lowCI", "highCI")
+    print(predictions)}
+    #printing predictions for venlafaxine
+    if(dis[i]=="mirtazapine"){
+      cat("\n******Predicted RR and 95% CI with spline model for Mirtazapine dropoutAE****** \n")
+      predictions=predict(doseresRR, data.frame(Dose_delivered_mean=c(0,7.5,15,30,45,60)),xref, exp = TRUE)[,c(1,3,4,5)]
+names(predictions)<-c("dose","RR","lowCI", "highCI")
+print(predictions)}
     
+
   }#end else
 }
 

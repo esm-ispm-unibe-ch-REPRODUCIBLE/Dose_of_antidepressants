@@ -52,7 +52,11 @@ cat("\n******For the spline model we have in total",length(unique(mymoredata$Stu
     matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
   #with(mymoredata,points(hayasaka_ddd[logRR!=0],exp(logRR[logRR!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
-
+# create the RRs at specific doses
+  cat("\n******Predicted RR and 95% CI with spline model for response****** \n")
+  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
+  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
+  print(predictions)
 ################
 #2. dropout
 ###############
@@ -77,7 +81,12 @@ cat("******For the splines model we have in total",length(unique(mymoredata$Stud
     matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
   #with(mymoredata,points(hayasaka_ddd[logRRdrop!=0],exp(logRRdrop[logRRdrop!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
-
+  
+  # create the RRs at specific doses
+  cat("\n******Predicted RR and 95% CI with spline model for dropout****** \n")
+  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
+  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
+  print(predictions)
 
 ################################
 #3. dropout due to AE
@@ -102,7 +111,11 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
     matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
   #with(mymoredata,points(hayasaka_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
-
+  # create the RRs at specific doses
+  cat("\n******Predicted RR and 95% CI with spline model for dropout AE****** \n")
+  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
+  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
+  print(predictions)
   
 dev.off()
 sink()
