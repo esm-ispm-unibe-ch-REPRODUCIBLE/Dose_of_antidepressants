@@ -48,13 +48,13 @@ DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.17,
 DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.20,DOSE$Drug=="venlafaxine")
 
 DOSE$meps_ddd=DOSE$Dose_delivered_mean
-DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.02,DOSE$Drug=="citalopram")
-DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.98,DOSE$Drug=="escitalopram")
+DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.23,DOSE$Drug=="citalopram")
+DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*2.52,DOSE$Drug=="escitalopram")
 DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1,DOSE$Drug=="fluoxetine")
-DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.10,DOSE$Drug=="mirtazapine")
-DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.11,DOSE$Drug=="paroxetine")
-DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*0.38,DOSE$Drug=="sertraline")
-DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*0.28,DOSE$Drug=="venlafaxine")
+DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.62,DOSE$Drug=="mirtazapine")
+DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*1.02,DOSE$Drug=="paroxetine")
+DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*0.43,DOSE$Drug=="sertraline")
+DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*0.23,DOSE$Drug=="venlafaxine")
 
                            
 

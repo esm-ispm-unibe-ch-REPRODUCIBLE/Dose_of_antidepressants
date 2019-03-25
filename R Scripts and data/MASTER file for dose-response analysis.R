@@ -9,6 +9,7 @@ install.packages("metafor")
 install.packages("readxl") 
 install.packages("dosresmeta")
 install.packages("rms") 
+
 #load libraries
 library(netmeta)
 library(meta)
@@ -16,6 +17,7 @@ library(metafor)
 library(readxl)
 library(dosresmeta)
 library(rms)
+
             
 #Load the functions needed
 source("Functions needed in the dose-response analysis.R")
@@ -45,16 +47,16 @@ source("Functions needed in the dose-response analysis.R")
             source("Create dose in Griselda datafile DOSE.R")
            
             write.csv(DOSE,"Data to be used only for study reporting.csv")
-           
+            
             ################################################################################################
             #  Analyses
             ###############################################################################################
             
-            # to produce graphs for each drug separately run
-            source("Dose-response analysis for each drug separately.R")
-            
             # to produce graphs for all SSRIs drugs and doses together including placebo
             source("Dosres all study designs all doses.R")
+            
+            # to produce graphs for each drug separately run
+            source("Dose-response analysis for each drug separately.R")
             
             ####SENSITIVITY ANALYSES
             

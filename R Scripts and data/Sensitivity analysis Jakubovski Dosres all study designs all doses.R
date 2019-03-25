@@ -5,7 +5,7 @@
 #     ANALYSIS INCLUDING all dose and all drugs
 #################################################################
 
-pdf("Sensitivity analysis Jakobovski Meta-analytic dose plots for all SSRIs and doses.pdf")
+#pdf("Sensitivity analysis Jakobovski Meta-analytic dose plots for all SSRIs and doses.pdf")
 sink("Sensitivity analysis Jakobovski Meta-analytic dose-response analysis for all drugs and doses.txt")
 
 cat("\n \n \n DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE using Jakubovski AND PLACEBO \n \n \n")
@@ -49,12 +49,41 @@ cat("\n******For the spline model we have in total",length(unique(mymoredata$Stu
   newdata=data.frame(jakubovski_ddd=seq(0,80,1))
   xref=min(mymoredata$jakubovski_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
-    plot(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Splines",text))
-    matlines(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+    plot(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Fluoxetine equivalent dose",ylab="RR",main=c("Splines",text),col="deepskyblue",lwd=2)
+    matlines(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),cbind(ci.ub,ci.lb),col="deepskyblue",lwd=0.5,lty="dashed")})
   #with(mymoredata,points(jakubovski_ddd[logRR!=0],exp(logRR[logRR!=0])))
   with(mymoredata,rug(jakubovski_ddd, quiet = TRUE))
 
+  
+  ################################
+  #3. dropout due to AE
+  ###############################
+  cat("\n-----------------------------------------------\n")
+  cat("\n-------- DROPOUT DUE TO AE --------------------\n")
+  mymoredata=DOSEj1[DOSEj1$excdropAE==F,] 
+  
+  
+  text=paste(length(unique(mymoredata$Study_No)),"studies comparing all drugs and doses for dropout due to AE")
+  
+  
+  cat("\n-------- Splines dropout AE -----------------------------\n")
+  #cubic splines
+  
+  cat("\n******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies\n")
+  
+  doseresRR=dosresmeta(formula=logRRdropAE~rcs(jakubovski_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
+  print(summary(doseresRR))
+  newdata=data.frame(jakubovski_ddd=seq(0,80,1))
+  xref=min(mymoredata$jakubovski_ddd)
+  with(predict(doseresRR, newdata,xref, exp = TRUE), {
+    plot(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Fluoxetine equivalent dose",ylab="RR",main=c("Splines",text),col="deeppink",lwd=2)
+    matlines(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),cbind(ci.ub,ci.lb),col="deeppink",lwd=0.5,lty="dashed")})
+  #with(mymoredata,points(jakubovski_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
+  with(mymoredata,rug(jakubovski_ddd, quiet = TRUE))
+  
+  
 ################
 #2. dropout
 ###############
@@ -78,39 +107,14 @@ cat("******For the splines model we have in total",length(unique(mymoredata$Stud
   newdata=data.frame(jakubovski_ddd=seq(0,80,1))
   xref=min(mymoredata$jakubovski_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
-    plot(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Splines",text))
-    matlines(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+    plot(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Fluoxetine equivalent dose",ylab="RR",main=c("Splines",text),col="purple",lwd=2)
+    matlines(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),cbind(ci.ub,ci.lb),col="purple",lwd=0.5,lty="dashed")})
   #with(mymoredata,points(jakubovski_ddd[logRRdrop!=0],exp(logRRdrop[logRRdrop!=0])))
   with(mymoredata,rug(jakubovski_ddd, quiet = TRUE))
 
 
-################################
-#3. dropout due to AE
-###############################
-cat("\n-----------------------------------------------\n")
-cat("\n-------- DROPOUT DUE TO AE --------------------\n")
-mymoredata=DOSEj1[DOSEj1$excdropAE==F,] 
 
 
-text=paste(length(unique(mymoredata$Study_No)),"studies comparing all drugs and doses for dropout due to AE")
-
-
-cat("\n-------- Splines dropout AE -----------------------------\n")
-#cubic splines
-
-cat("\n******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies\n")
-
-  doseresRR=dosresmeta(formula=logRRdropAE~rcs(jakubovski_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
-  print(summary(doseresRR))
-  newdata=data.frame(jakubovski_ddd=seq(0,80,1))
-  xref=min(mymoredata$jakubovski_ddd)
-  with(predict(doseresRR, newdata,xref, exp = TRUE), {
-    plot(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Splines",text))
-    matlines(get("rcs(jakubovski_ddd, knots)jakubovski_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-  #with(mymoredata,points(jakubovski_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
-  with(mymoredata,rug(jakubovski_ddd, quiet = TRUE))
-
-dev.off()
+#dev.off()
 sink()

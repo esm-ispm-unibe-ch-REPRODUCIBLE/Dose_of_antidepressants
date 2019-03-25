@@ -4,9 +4,9 @@
 #     ANALYSIS INCLUDING all dose and all drugs
 #################################################################
 
-pdf("Meta-analytic dose plots for all drugs and doses.pdf")
+#pdf("Meta-analytic dose plots for all drugs and doses.pdf")
 sink("Meta-analytic dose-response analysis for all drugs and doses.txt")
-
+par(mfrow=c(1,3))
 
 #####CLEAN THE DATA####
 
@@ -47,9 +47,9 @@ cat("\n******For the spline model we have in total",length(unique(mymoredata$Stu
   newdata=data.frame(hayasaka_ddd=seq(0,80,1))
   xref=min(mymoredata$hayasaka_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
-    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Response"))
-    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Dose",ylab="RR",main=c("Response"),col="deepskyblue", lwd=2)
+    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="deepskyblue",lty="dashed",lwd=0.5)})
   #with(mymoredata,points(hayasaka_ddd[logRR!=0],exp(logRR[logRR!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 # create the RRs at specific doses
@@ -57,36 +57,7 @@ cat("\n******For the spline model we have in total",length(unique(mymoredata$Stu
   predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
   names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
   print(predictions)
-################
-#2. dropout
-###############
-cat("\n-----------------------------------------------\n")
-cat("\n-------- DROPOUT  -----------------------------\n")
 
-mymoredata=DOSE[DOSE$excdrop==F,] 
-
-
-
-cat("\n-------- Splines dropout -----------------------------\n")
-
-cat("******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies")
-
-  doseresRR=dosresmeta(formula=logRRdrop~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata)
-  print(summary(doseresRR))
-  newdata=data.frame(hayasaka_ddd=seq(0,80,1))
-  xref=min(mymoredata$hayasaka_ddd)
-  with(predict(doseresRR, newdata,xref, exp = TRUE), {
-    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Dropout"))
-    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-  #with(mymoredata,points(hayasaka_ddd[logRRdrop!=0],exp(logRRdrop[logRRdrop!=0])))
-  with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
-  
-  # create the RRs at specific doses
-  cat("\n******Predicted RR and 95% CI with spline model for dropout****** \n")
-  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
-  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
-  print(predictions)
 
 ################################
 #3. dropout due to AE
@@ -106,9 +77,9 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   newdata=data.frame(hayasaka_ddd=seq(0,80,1))
   xref=min(mymoredata$hayasaka_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
-    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim =  c(.5, 5),xlab="Dose",ylab="RR",main=c("Dropout AE"))
-    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim =  c(.5, 4),xlab="Dose",ylab="RR",main=c("Dropout AE"),col="deeppink",lwd=2)
+    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="deeppink",lty="dashed",lwd=0.5)})
   #with(mymoredata,points(hayasaka_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
   # create the RRs at specific doses
@@ -116,6 +87,38 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
   names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
   print(predictions)
+
   
-dev.off()
+  ################
+  #2. dropout
+  ###############
+  cat("\n-----------------------------------------------\n")
+  cat("\n-------- DROPOUT  -----------------------------\n")
+  
+  mymoredata=DOSE[DOSE$excdrop==F,] 
+  
+  
+  
+  cat("\n-------- Splines dropout -----------------------------\n")
+  
+  cat("******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies")
+  
+  doseresRR=dosresmeta(formula=logRRdrop~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata)
+  print(summary(doseresRR))
+  newdata=data.frame(hayasaka_ddd=seq(0,80,1))
+  xref=min(mymoredata$hayasaka_ddd)
+  with(predict(doseresRR, newdata,xref, exp = TRUE), {
+    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Dose",ylab="RR",main=c("Dropout"),col="purple",lwd=2)
+    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="purple",lty="dashed",lwd=0.5)})
+  #with(mymoredata,points(hayasaka_ddd[logRRdrop!=0],exp(logRRdrop[logRRdrop!=0])))
+  with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
+  
+  # create the RRs at specific doses
+  cat("\n******Predicted RR and 95% CI with spline model for dropout****** \n")
+  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
+  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
+  print(predictions)
+  
+#dev.off()
 sink()
