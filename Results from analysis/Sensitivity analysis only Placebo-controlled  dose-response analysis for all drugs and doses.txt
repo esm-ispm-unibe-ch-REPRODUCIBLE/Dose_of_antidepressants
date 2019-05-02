@@ -6,7 +6,7 @@
  
 From all analyses I excluded studies with less than 2 different doses evaluated.
  
-    Active drugs as well as Placebo are included.
+    Only arms from placeboc-controlled trials are included.
 
  There are 69 studies comparing all doses . 
 which include the drugs: placebo fluoxetine paroxetine citalopram escitalopram sertraline 
@@ -141,46 +141,3 @@ rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0099                                 
 5          40 0.9116656 0.8173468 1.0168684
 6          60 1.0440883 0.8979188 1.2140522
 7          80 1.2004317 0.9686743 1.4876377
-
------------------------------------------------
-
--------- REMISSION -----------------------------
-
--------- Splines response -----------------------------
-
-******For the spline model we have in total 54 studiesCall:  dosresmeta(formula = logRRrem ~ rcs(hayasaka_ddd, knots), id = Study_No, 
-    type = type, cases = remitters, n = No_randomised, data = mymoredata, 
-    se = selogRRrem, proc = "1stage")
-
-One-stage random-effects meta-analysis
-Estimation method: REML
-Covariance approximation: Greenland & Longnecker
-
-Chi2 model: X2 = 9.4184 (df = 2), p-value = 0.0090
-
-Fixed-effects coefficients
-                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0102      0.0034   3.0057    0.0026    0.0035    0.0168  **
-rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0171      0.0075  -2.2740    0.0230   -0.0318   -0.0024   *
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
-
-Between-study random-effects (co)variance components
-                                       Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0195  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0323                               -0.9904
-
-54 studies, 72 values, 2 fixed and 3 random-effects parameters
-  logLik       AIC       BIC  
--45.4152  100.8303  112.0728  
-
-
-******Predicted RR and 95% CI with spline model for remission****** 
-  dose hayddd       RR     lowCI   highCI
-1           0 1.000000 1.0000000 1.000000
-2          10 1.107023 1.0360071 1.182907
-3          20 1.212477 1.0702669 1.373584
-4          30 1.263392 1.0881523 1.466852
-5          40 1.261371 1.0795091 1.473872
-6          60 1.200458 0.9792059 1.471703
-7          80 1.138425 0.8431522 1.537103

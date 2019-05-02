@@ -26,23 +26,23 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 58.9967 (df = 2), p-value = 0.0000
+Chi2 model: X2 = 67.6850 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
                                            Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0121      0.0016   7.6805    0.0000    0.0090    0.0152  ***
-rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0308      0.0058  -5.2730    0.0000   -0.0422   -0.0193  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0126      0.0015   8.2093    0.0000    0.0096    0.0156  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0309      0.0057  -5.3898    0.0000   -0.0421   -0.0197  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                            Std. Dev                                      Corr
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0069  rcs(jakubovski_ddd, knots)jakubovski_ddd
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0126                                        -1
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0065  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0130                                        -1
 
-60 studies, 82 values, 2 fixed and 3 random-effects parameters
+60 studies, 85 values, 2 fixed and 3 random-effects parameters
  logLik      AIC      BIC  
--1.0238  12.0477  23.9578  
+-1.1433  12.2867  24.3809  
 
 
 -----------------------------------------------
@@ -51,7 +51,7 @@ rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0126                             
 
 -------- Splines dropout AE -----------------------------
 
-******For the splines model we have in total 52 studies
+******For the splines model we have in total 53 studies
 Call:  dosresmeta(formula = logRRdropAE ~ rcs(jakubovski_ddd, knots), 
     id = Study_No, type = type, cases = Dropouts_sideeffects, 
     n = No_randomised, data = mymoredata, se = selogRRdropAE, 
@@ -61,23 +61,23 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 43.7766 (df = 2), p-value = 0.0000
+Chi2 model: X2 = 48.8694 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
                                            Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0246      0.0047   5.2188    0.0000    0.0154    0.0338  ***
-rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0170      0.0187  -0.9078    0.3640   -0.0537    0.0197     
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0245      0.0047   5.2098    0.0000    0.0153    0.0337  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0170      0.0171  -0.9923    0.3210   -0.0505    0.0165     
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                            Std. Dev                                      Corr
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0096  rcs(jakubovski_ddd, knots)jakubovski_ddd
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0332                                   -0.7111
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0109  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0342                                   -0.8755
 
-52 studies, 73 values, 2 fixed and 3 random-effects parameters
+53 studies, 77 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
--70.9592  151.9184  163.2318  
+-73.5457  157.0915  168.6789  
 
 
 -----------------------------------------------
@@ -95,21 +95,21 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 9.8326 (df = 2), p-value = 0.0073
+Chi2 model: X2 = 11.3163 (df = 2), p-value = 0.0035
 
 Fixed-effects coefficients
                                            Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
-rcs(jakubovski_ddd, knots)jakubovski_ddd    -0.0062      0.0023  -2.6525    0.0080   -0.0108   -0.0016  **
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0244      0.0087   2.8216    0.0048    0.0075    0.0414  **
+rcs(jakubovski_ddd, knots)jakubovski_ddd    -0.0065      0.0023  -2.8151    0.0049   -0.0111   -0.0020  **
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0253      0.0083   3.0642    0.0022    0.0091    0.0415  **
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                            Std. Dev                                      Corr
 rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0105  rcs(jakubovski_ddd, knots)jakubovski_ddd
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0023                                        -1
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0028                                        -1
 
-59 studies, 85 values, 2 fixed and 3 random-effects parameters
+59 studies, 88 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
--32.5780   75.1561   87.2503  
+-31.3192   72.6383   84.9101  
 

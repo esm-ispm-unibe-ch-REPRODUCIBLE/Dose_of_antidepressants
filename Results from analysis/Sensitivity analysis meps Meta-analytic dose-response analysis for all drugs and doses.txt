@@ -28,23 +28,23 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 67.9653 (df = 2), p-value = 0.0000
+Chi2 model: X2 = 71.7479 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
                                Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(meps_ddd, knots)meps_ddd     0.0108      0.0013   8.1703    0.0000    0.0082    0.0134  ***
-rcs(meps_ddd, knots)meps_ddd'   -0.0185      0.0032  -5.7565    0.0000   -0.0248   -0.0122  ***
+rcs(meps_ddd, knots)meps_ddd     0.0110      0.0013   8.3491    0.0000    0.0084    0.0136  ***
+rcs(meps_ddd, knots)meps_ddd'   -0.0183      0.0032  -5.6662    0.0000   -0.0246   -0.0119  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                Std. Dev                          Corr
-rcs(meps_ddd, knots)meps_ddd     0.0049  rcs(meps_ddd, knots)meps_ddd
-rcs(meps_ddd, knots)meps_ddd'    0.0042                            -1
+rcs(meps_ddd, knots)meps_ddd     0.0050  rcs(meps_ddd, knots)meps_ddd
+rcs(meps_ddd, knots)meps_ddd'    0.0048                            -1
 
-60 studies, 82 values, 2 fixed and 3 random-effects parameters
+60 studies, 85 values, 2 fixed and 3 random-effects parameters
  logLik      AIC      BIC  
- 2.0826   5.8348  17.7450  
+ 1.2462   7.5075  19.6017  
 
 
 -----------------------------------------------
@@ -53,7 +53,7 @@ rcs(meps_ddd, knots)meps_ddd'    0.0042                            -1
 
 -------- Splines dropout AE -----------------------------
 
-******For the splines model we have in total 52 studies
+******For the splines model we have in total 53 studies
 Call:  dosresmeta(formula = logRRdropAE ~ rcs(meps_ddd, knots), id = Study_No, 
     type = type, cases = Dropouts_sideeffects, n = No_randomised, 
     data = mymoredata, se = selogRRdropAE, proc = "1stage")
@@ -62,23 +62,23 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 55.7321 (df = 2), p-value = 0.0000
+Chi2 model: X2 = 62.0807 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
                                Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(meps_ddd, knots)meps_ddd     0.0173      0.0043   4.0200    0.0001    0.0089    0.0258  ***
-rcs(meps_ddd, knots)meps_ddd'   -0.0046      0.0108  -0.4277    0.6689   -0.0258    0.0166     
+rcs(meps_ddd, knots)meps_ddd     0.0170      0.0042   4.0130    0.0001    0.0087    0.0253  ***
+rcs(meps_ddd, knots)meps_ddd'   -0.0030      0.0105  -0.2876    0.7736   -0.0235    0.0175     
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                Std. Dev                          Corr
-rcs(meps_ddd, knots)meps_ddd     0.0078  rcs(meps_ddd, knots)meps_ddd
-rcs(meps_ddd, knots)meps_ddd'    0.0245                            -1
+rcs(meps_ddd, knots)meps_ddd     0.0077  rcs(meps_ddd, knots)meps_ddd
+rcs(meps_ddd, knots)meps_ddd'    0.0232                            -1
 
-52 studies, 73 values, 2 fixed and 3 random-effects parameters
+53 studies, 77 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
--68.5057  147.0115  158.3249  
+-70.7441  151.4882  163.0756  
 
 
 -----------------------------------------------
@@ -94,21 +94,21 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 18.3674 (df = 2), p-value = 0.0001
+Chi2 model: X2 = 18.5168 (df = 2), p-value = 0.0001
 
 Fixed-effects coefficients
                                Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(meps_ddd, knots)meps_ddd    -0.0070      0.0022  -3.1874    0.0014   -0.0114   -0.0027   **
-rcs(meps_ddd, knots)meps_ddd'    0.0172      0.0041   4.2112    0.0000    0.0092    0.0252  ***
+rcs(meps_ddd, knots)meps_ddd    -0.0070      0.0021  -3.2771    0.0010   -0.0112   -0.0028   **
+rcs(meps_ddd, knots)meps_ddd'    0.0172      0.0040   4.2781    0.0000    0.0093    0.0251  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                Std. Dev                          Corr
-rcs(meps_ddd, knots)meps_ddd     0.0109  rcs(meps_ddd, knots)meps_ddd
-rcs(meps_ddd, knots)meps_ddd'    0.0126                            -1
+rcs(meps_ddd, knots)meps_ddd     0.0104  rcs(meps_ddd, knots)meps_ddd
+rcs(meps_ddd, knots)meps_ddd'    0.0111                            -1
 
-59 studies, 85 values, 2 fixed and 3 random-effects parameters
+59 studies, 88 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
--30.7815   71.5630   83.6572  
+-29.6019   69.2038   81.4755  
 

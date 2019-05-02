@@ -1,68 +1,68 @@
 *************************** 
 Studies in citalopram 
 *************************** 
-There are 6 studies 
+There are 9 studies 
 The knots for i= 1 are: 10 
  The knots for i= 1 are: 20 
  The knots for i= 1 are: 50 
 *************************** 
 Studies in escitalopram 
 *************************** 
-There are 12 studies 
+There are 10 studies 
 The knots for i= 2 are: 5 
  The knots for i= 2 are: 9 
  The knots for i= 2 are: 23 
 *************************** 
 Studies in fluoxetine 
 *************************** 
-There are 14 studies 
+There are 16 studies 
 The knots for i= 3 are: 10 
  The knots for i= 3 are: 20 
  The knots for i= 3 are: 50 
 *************************** 
 Studies in mirtazapine 
 *************************** 
-There are 4 studies 
+There are 3 studies 
 The knots for i= 4 are: 13 
  The knots for i= 4 are: 25 
  The knots for i= 4 are: 63 
 
-******Predicted RR and 95% CI with spline model for Mirtazapine dropoutAE****** 
-  dose       RR    lowCI   highCI
-1  0.0 1.000000 1.000000 1.000000
-2  7.5 1.234909 1.045659 1.458409
-3 15.0 1.524724 1.093552 2.125903
-4 30.0 2.165504 1.256921 3.730871
-5 45.0 2.543701 1.535853 4.212913
-6 60.0 2.661705 1.439783 4.920654
+******Predicted RR and 95% CI with spline model for Mirtazapine remission****** 
+  dose        RR     lowCI   highCI
+1  0.0 1.0000000 1.0000000 1.000000
+2  7.5 1.0635024 0.9381587 1.205593
+3 15.0 1.1307888 0.8801954 1.452727
+4 30.0 1.1727771 0.7875880 1.746352
+5 45.0 0.9651634 0.6278343 1.483736
+6 60.0 0.6899529 0.3179830 1.497046
 *************************** 
 Studies in paroxetine 
 *************************** 
-There are 21 studies 
+There are 19 studies 
 The knots for i= 5 are: 8 
  The knots for i= 5 are: 17 
  The knots for i= 5 are: 42 
 *************************** 
 Studies in sertraline 
 *************************** 
-There are 2 studies 
+There are 3 studies 
 The knots for i= 6 are: 24 
  The knots for i= 6 are: 49 
  The knots for i= 6 are: 122 
 *************************** 
 Studies in venlafaxine 
 *************************** 
-There are 7 studies 
+There are 6 studies 
 The knots for i= 7 are: 37 
  The knots for i= 7 are: 74 
  The knots for i= 7 are: 185 
 
-******Predicted RR and 95% CI with spline model for Venlafaxine dropoutAE****** 
-   dose       RR    lowCI   highCI
-1   0.0 1.000000 1.000000 1.000000
-2  37.5 1.525371 1.245999 1.867382
-3  75.0 2.244473 1.533343 3.285409
-4 150.0 3.078322 1.954619 4.848038
-5 225.0 3.209003 2.092598 4.921011
-6 300.0 3.313419 2.016788 5.443678
-7 375.0 3.421232 1.814200 6.451784
+******Predicted RR and 95% CI with spline model for Venlafaxine remission****** 
+   dose       RR     lowCI   highCI
+1   0.0 1.000000 1.0000000 1.000000
+2  37.5 1.106539 0.8900377 1.375704
+3  75.0 1.215919 0.8073105 1.831339
+4 150.0 1.343925 0.8382397 2.154676
+5 225.0 1.408537 0.9601331 2.066355
+6 300.0 1.473525 1.0125769 2.144306
+7 375.0 1.541511 0.9741473 2.439319

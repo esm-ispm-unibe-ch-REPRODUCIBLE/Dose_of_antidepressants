@@ -15,7 +15,7 @@ The knots for i= 2 are: 5
 *************************** 
 Studies in fluoxetine 
 *************************** 
-There are 17 studies 
+There are 18 studies 
 The knots for i= 3 are: 10 
  The knots for i= 3 are: 20 
  The knots for i= 3 are: 50 
@@ -45,7 +45,7 @@ The knots for i= 5 are: 8
 *************************** 
 Studies in sertraline 
 *************************** 
-There are 4 studies 
+There are 3 studies 
 The knots for i= 6 are: 24 
  The knots for i= 6 are: 49 
  The knots for i= 6 are: 122 
