@@ -56,6 +56,10 @@ source("Functions needed in the dose-response analysis.R")
             # to produce graphs for all SSRIs drugs and doses together including placebo
             source("Dosres all study designs all doses.R")
             
+            # to produce graphs for all SSRIs drugs and doses together including placebo after excluding studies in participants 65 or older
+            # and after excluding studies with duration 16 weeks or more. 
+            source("Sensitivity analysis age duration.R")
+            
             # to produce graphs for each drug separately run
             source("Dose-response analysis for each drug separately.R")
             

@@ -5,8 +5,10 @@
 
 newDOSE=c()# a new DOSE database
 a=split(DOSE,DOSE$Study_No)
+
 for (i in 1:length(unique(DOSE$Study_No)))# loop in all studies
 {
+
   sa=split(a[[i]],a[[i]]$Drug)
   whereispla=!is.na(match(names(sa),c("placebo")))#finds the place of placebo
   oldStudy_No=a[[i]]$Study_No[1]
@@ -41,9 +43,10 @@ for (i in 1:length(unique(DOSE$Study_No)))# loop in all studies
     
   }
   newDOSE=rbind.data.frame(newDOSE,sa)
-
+  
 }
- newDOSE[,c(2:4,6,7,9,10,12,16:23)]<-lapply(newDOSE[,c(2:4,6,7,9,10,12,16:23)],as.numeric)
+
+ newDOSE[,c(2:4,6,7,9,10,12,16:23,48:50)]<-lapply(newDOSE[,c(2:4,6,7,9,10,12,16:23,48:50)],as.numeric)
  rm(a,i,j,whereispla,uniquedrugs,oldStudy_No,sa)   
     
     

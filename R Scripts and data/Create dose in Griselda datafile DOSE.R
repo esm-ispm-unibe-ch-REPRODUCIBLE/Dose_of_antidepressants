@@ -59,7 +59,10 @@ DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*0.23,DOSE$Drug=="
                            
 
 ### KEEP ONLY USEFUL VARIABLES and DRUGS WE WANT
-DOSE=DOSE[,c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","N compimputed","Mean","SD","hayasaka_ddd","ddd", "jakubovski_ddd","meps_ddd","Dose_delivered_mean")]
+DOSE=DOSE[,c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","remitters","age","weeks","hayasaka_ddd","ddd", "jakubovski_ddd","meps_ddd","Dose_delivered_mean")]
+
+#DOSE=DOSE[,c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","N compimputed","Mean","SD","hayasaka_ddd","ddd", "jakubovski_ddd","meps_ddd","Dose_delivered_mean")]
+
 
 ##ORDER THE DATABASE SO THAT WE HAVE WITHIN EACH STUDY PLACEBO OR LEAST DOSE FIRST
 DOSE=DOSE[with(DOSE,order(Study_No,hayasaka_ddd)),]
@@ -88,6 +91,8 @@ DOSEOTHERs=exludesinglearmsdata.fun(DOSEOTHERs,Study_No)
 DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
 DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
 DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,remitters,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRrem",nameofselogRR="selogRRrem")
+
 
 #COPY THE DATABASE DOSESSRIs to DOSE TO THE DOSEj to be used for the jakubovski_ddd analysis
 DOSEj=DOSESSRIs
@@ -95,11 +100,11 @@ DOSEj=DOSESSRIs
 DOSEall=createdatasetdoseresponse.fun(DOSEall,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
 DOSEall=createdatasetdoseresponse.fun(DOSEall,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
 DOSEall=createdatasetdoseresponse.fun(DOSEall,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+DOSEall=createdatasetdoseresponse.fun(DOSEall,remitters,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRrem",nameofselogRR="selogRRrem")
 
 
-#Create a databse with the SSRIs in placebo-controlled trials only
+#Create a database with the SSRIs in placebo-controlled trials only
 PC=unique(DOSESSRIs$Study_No)[(tapply(DOSESSRIs$Drug=="placebo",DOSESSRIs$Study_No,sum)==1)]
 DOSESSRIsPC=DOSESSRIs[DOSESSRIs$Study_No%in%PC,]
-
 
 

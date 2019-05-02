@@ -1,31 +1,29 @@
 
 
-##################################################################
-#     Sensitivity analysis excluding age>65 and 
-#################################################################
+####################################################################################
+#     Sensitivity analysis excluding age>65 and follow-up more than 16 weeks
+###################################################################################
 
-#pdf("Meta-analytic dose plots for all drugs and doses.pdf")
-sink("Meta-analytic dose-response analysis for all drugs and doses.txt")
+#pdf("Sensitivity analysis excluding age>65 and follow-up more than 16 weeks.pdf")
+sink("Sensitivity analysis excluding age>65 and follow-up 6 to 8 weeks.txt")
 par(mfrow=c(1,3))
 
-#####CLEAN THE DATA####
+########################################################
+#####FOR AGE ##########################################
+########################################################
+
 
 #Create 3 index variables to exlcude studies per outcome (response, dropout, dropoutAE) that do not contribute to the dose-response (e.g. 0 events, different doses etc)
-DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRR,Responders,No_randomised,hayasaka_ddd,"exc")
-DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRRdrop,Dropouts_total,No_randomised,hayasaka_ddd,"excdrop")
-DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRRdropAE,Dropouts_sideeffects,No_randomised,hayasaka_ddd,"excdropAE")
-DOSESSRIs=cleandosresdata1.fun(DOSESSRIs,Study_No,logRRrem,remitters,No_randomised,hayasaka_ddd,"excrem")
+oxo<-DOSESSRIs$age>=65|is.na(DOSESSRIs$age)
+DOSE=DOSESSRIs[!oxo,]
+DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
+cat("\n \n \n DOSE RESPONSE ANALYSIS OF SSRIs in patients less than 65 years old \n \n \n")
 
-DOSE=DOSESSRIs
-
-cat("\n \n \n DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE AND PLACEBO \n \n \n")
-cat("From all analyses I excluded studies with less than 2 different doses evaluated.\n 
-    Active drugs as well as Placebo are included.\n")
 
 ##REPORTING
-write.csv(DOSE, "DOSEmainanalysis.csv")
-cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies comparing all doses .", "\n"))
-cat("which include the drugs:", unique(DOSE$Drug), "\n")
+
+cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies comparing all doses in patients mless than 65 years old.", "\n"))
+
 cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
 knots=c(10,20,50) 
 
@@ -122,32 +120,112 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   print(predictions)
   
   
+  ########################################################
+  #####FOR WEEKS of follow-up ############################
+  ########################################################
+  
+  DOSESSRIs$weeks<-as.numeric(DOSESSRIs$weeks)
+  oxo<-DOSESSRIs$weeks<6|is.na(DOSESSRIs$weeks)|DOSESSRIs$weeks>8
+  DOSE=DOSESSRIs[!oxo,]
+  DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
+  cat("\n \n \n DOSE RESPONSE ANALYSIS OF SSRIs in studies with 6 to 8 weeks of follow-up \n \n \n")
+  
+  
+  ##REPORTING
+  
+  cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies with 6 to 8 weeks of follow-up", "\n"))
+  
+  cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
+  knots=c(10,20,50) 
+  
   ################
   #1. response
   ###############
   
   cat("\n-----------------------------------------------\n")
-  cat("\n-------- REMISSION -----------------------------\n")
+  cat("\n-------- RESPONSE -----------------------------\n")
   
-  mymoredata=DOSE[DOSE$excrem==F,]
+  mymoredata=DOSE[DOSE$exc==F,]
   
   cat("\n-------- Splines response -----------------------------\n")
   #cubic splines
   
   cat("\n******For the spline model we have in total",length(unique(mymoredata$Study_No)),"studies")
   
-  doseresRR=dosresmeta(formula=logRRrem~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=remitters,n=No_randomised,se=selogRRrem,data=mymoredata)
+  doseresRR=dosresmeta(formula=logRR~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
   print(summary(doseresRR))
   newdata=data.frame(hayasaka_ddd=seq(0,80,1))
   xref=min(mymoredata$hayasaka_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
     plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, type = "l",
-         xlim = c(0, 80), ylim = c(.5, 4),xlab="Dose",ylab="RR",main=c("Remission"),col="green", lwd=2)
-    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="green",lty="dashed",lwd=0.5)})
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Dose",ylab="RR",main=c("Response"),col="deepskyblue", lwd=2)
+    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="deepskyblue",lty="dashed",lwd=0.5)})
   #with(mymoredata,points(hayasaka_ddd[logRR!=0],exp(logRR[logRR!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
   # create the RRs at specific doses
-  cat("\n******Predicted RR and 95% CI with spline model for remission****** \n")
+  cat("\n******Predicted RR and 95% CI with spline model for response****** \n")
+  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
+  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
+  print(predictions)
+  
+  
+  ################################
+  #3. dropout due to AE
+  ###############################
+  cat("\n-----------------------------------------------\n")
+  cat("\n-------- DROPOUT DUE TO AE --------------------\n")
+  mymoredata=DOSE[DOSE$excdropAE==F,] 
+  mymoredata$Dropouts_sideeffects=replace(mymoredata$Dropouts_sideeffects, mymoredata$Dropouts_sideeffects==0,0.05)#correct for zero events in some arms
+  
+  cat("\n-------- Splines dropout AE -----------------------------\n")
+  #cubic splines
+  
+  cat("\n******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies\n")
+  
+  doseresRR=dosresmeta(formula=logRRdropAE~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
+  print(summary(doseresRR))
+  newdata=data.frame(hayasaka_ddd=seq(0,80,1))
+  xref=min(mymoredata$hayasaka_ddd)
+  with(predict(doseresRR, newdata,xref, exp = TRUE), {
+    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim =  c(.5, 4),xlab="Dose",ylab="RR",main=c("Dropout AE"),col="deeppink",lwd=2)
+    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="deeppink",lty="dashed",lwd=0.5)})
+  #with(mymoredata,points(hayasaka_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
+  with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
+  # create the RRs at specific doses
+  cat("\n******Predicted RR and 95% CI with spline model for dropout AE****** \n")
+  predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
+  names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
+  print(predictions)
+  
+  
+  ################
+  #2. dropout
+  ###############
+  cat("\n-----------------------------------------------\n")
+  cat("\n-------- DROPOUT  -----------------------------\n")
+  
+  mymoredata=DOSE[DOSE$excdrop==F,] 
+  
+  
+  
+  cat("\n-------- Splines dropout -----------------------------\n")
+  
+  cat("******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies")
+  
+  doseresRR=dosresmeta(formula=logRRdrop~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata)
+  print(summary(doseresRR))
+  newdata=data.frame(hayasaka_ddd=seq(0,80,1))
+  xref=min(mymoredata$hayasaka_ddd)
+  with(predict(doseresRR, newdata,xref, exp = TRUE), {
+    plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, type = "l",
+         xlim = c(0, 80), ylim = c(.5, 4),xlab="Dose",ylab="RR",main=c("Dropout"),col="purple",lwd=2)
+    matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col="purple",lty="dashed",lwd=0.5)})
+  #with(mymoredata,points(hayasaka_ddd[logRRdrop!=0],exp(logRRdrop[logRRdrop!=0])))
+  with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
+  
+  # create the RRs at specific doses
+  cat("\n******Predicted RR and 95% CI with spline model for dropout****** \n")
   predictions=predict(doseresRR, data.frame(hayasaka_ddd=c(0,10,20,30,40,60,80)),xref, exp = TRUE)[,c(1,3,4,5)]
   names(predictions)<-c("dose hayddd","RR","lowCI", "highCI")
   print(predictions)
@@ -156,3 +234,4 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   
 #dev.off()
 sink()
+
