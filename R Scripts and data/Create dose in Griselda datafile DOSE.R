@@ -59,7 +59,9 @@ DOSE$meps_ddd=myreplace(DOSE$meps_ddd,DOSE$Dose_delivered_mean*0.23,DOSE$Drug=="
                            
 
 ### KEEP ONLY USEFUL VARIABLES and DRUGS WE WANT
-DOSE=DOSE[,c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","remitters","age","weeks","hayasaka_ddd","ddd", "jakubovski_ddd","meps_ddd","Dose_delivered_mean")]
+
+DOSE=DOSE[,c("Study_No","Overall_study_RoB","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","remitters","age","weeks","hayasaka_ddd","ddd", "jakubovski_ddd","meps_ddd","Dose_delivered_mean")]
+
 
 #DOSE=DOSE[,c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","N compimputed","Mean","SD","hayasaka_ddd","ddd", "jakubovski_ddd","meps_ddd","Dose_delivered_mean")]
 

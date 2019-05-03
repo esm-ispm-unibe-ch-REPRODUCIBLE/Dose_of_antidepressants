@@ -270,7 +270,7 @@ for(i in 1:length(dis))
   }#end else
 }
 
-
+sink()
 
 
 ##############
