@@ -31,9 +31,12 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 71.7479 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
-                               Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(meps_ddd, knots)meps_ddd     0.0110      0.0013   8.3491    0.0000    0.0084    0.0136  ***
-rcs(meps_ddd, knots)meps_ddd'   -0.0183      0.0032  -5.6662    0.0000   -0.0246   -0.0119  ***
+                               Estimate  Std. Error        z  Pr(>|z|)
+rcs(meps_ddd, knots)meps_ddd     0.0110      0.0013   8.3491    0.0000
+rcs(meps_ddd, knots)meps_ddd'   -0.0183      0.0032  -5.6662    0.0000
+                               95%ci.lb  95%ci.ub     
+rcs(meps_ddd, knots)meps_ddd     0.0084    0.0136  ***
+rcs(meps_ddd, knots)meps_ddd'   -0.0246   -0.0119  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
@@ -65,9 +68,12 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 62.0807 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
-                               Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(meps_ddd, knots)meps_ddd     0.0170      0.0042   4.0130    0.0001    0.0087    0.0253  ***
-rcs(meps_ddd, knots)meps_ddd'   -0.0030      0.0105  -0.2876    0.7736   -0.0235    0.0175     
+                               Estimate  Std. Error        z  Pr(>|z|)
+rcs(meps_ddd, knots)meps_ddd     0.0170      0.0042   4.0130    0.0001
+rcs(meps_ddd, knots)meps_ddd'   -0.0030      0.0105  -0.2876    0.7736
+                               95%ci.lb  95%ci.ub     
+rcs(meps_ddd, knots)meps_ddd     0.0087    0.0253  ***
+rcs(meps_ddd, knots)meps_ddd'   -0.0235    0.0175     
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
@@ -97,9 +103,12 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 18.5168 (df = 2), p-value = 0.0001
 
 Fixed-effects coefficients
-                               Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(meps_ddd, knots)meps_ddd    -0.0070      0.0021  -3.2771    0.0010   -0.0112   -0.0028   **
-rcs(meps_ddd, knots)meps_ddd'    0.0172      0.0040   4.2781    0.0000    0.0093    0.0251  ***
+                               Estimate  Std. Error        z  Pr(>|z|)
+rcs(meps_ddd, knots)meps_ddd    -0.0070      0.0021  -3.2771    0.0010
+rcs(meps_ddd, knots)meps_ddd'    0.0172      0.0040   4.2781    0.0000
+                               95%ci.lb  95%ci.ub     
+rcs(meps_ddd, knots)meps_ddd    -0.0112   -0.0028   **
+rcs(meps_ddd, knots)meps_ddd'    0.0093    0.0251  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 

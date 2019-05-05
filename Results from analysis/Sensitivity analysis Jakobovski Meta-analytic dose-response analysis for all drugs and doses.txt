@@ -29,16 +29,25 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 67.6850 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
-                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0126      0.0015   8.2093    0.0000    0.0096    0.0156  ***
-rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0309      0.0057  -5.3898    0.0000   -0.0421   -0.0197  ***
+                                           Estimate  Std. Error        z
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0126      0.0015   8.2093
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0309      0.0057  -5.3898
+                                           Pr(>|z|)  95%ci.lb  95%ci.ub
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0000    0.0096    0.0156
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0000   -0.0421   -0.0197
+                                              
+rcs(jakubovski_ddd, knots)jakubovski_ddd   ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
-                                           Std. Dev                                      Corr
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0065  rcs(jakubovski_ddd, knots)jakubovski_ddd
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0130                                        -1
+                                           Std. Dev
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0065
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0130
+                                                                               Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd   rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'                                        -1
 
 60 studies, 85 values, 2 fixed and 3 random-effects parameters
  logLik      AIC      BIC  
@@ -64,16 +73,25 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 48.8694 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
-                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0245      0.0047   5.2098    0.0000    0.0153    0.0337  ***
-rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0170      0.0171  -0.9923    0.3210   -0.0505    0.0165     
+                                           Estimate  Std. Error        z
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0245      0.0047   5.2098
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0170      0.0171  -0.9923
+                                           Pr(>|z|)  95%ci.lb  95%ci.ub
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0000    0.0153    0.0337
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.3210   -0.0505    0.0165
+                                              
+rcs(jakubovski_ddd, knots)jakubovski_ddd   ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'     
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
-                                           Std. Dev                                      Corr
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0109  rcs(jakubovski_ddd, knots)jakubovski_ddd
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0342                                   -0.8755
+                                           Std. Dev
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0109
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0342
+                                                                               Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd   rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'                                   -0.8755
 
 53 studies, 77 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
@@ -98,16 +116,25 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 11.3163 (df = 2), p-value = 0.0035
 
 Fixed-effects coefficients
-                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
-rcs(jakubovski_ddd, knots)jakubovski_ddd    -0.0065      0.0023  -2.8151    0.0049   -0.0111   -0.0020  **
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0253      0.0083   3.0642    0.0022    0.0091    0.0415  **
+                                           Estimate  Std. Error        z
+rcs(jakubovski_ddd, knots)jakubovski_ddd    -0.0065      0.0023  -2.8151
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0253      0.0083   3.0642
+                                           Pr(>|z|)  95%ci.lb  95%ci.ub
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0049   -0.0111   -0.0020
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0022    0.0091    0.0415
+                                             
+rcs(jakubovski_ddd, knots)jakubovski_ddd   **
+rcs(jakubovski_ddd, knots)jakubovski_ddd'  **
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
-                                           Std. Dev                                      Corr
-rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0105  rcs(jakubovski_ddd, knots)jakubovski_ddd
-rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0028                                        -1
+                                           Std. Dev
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0105
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0028
+                                                                               Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd   rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'                                        -1
 
 59 studies, 88 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
