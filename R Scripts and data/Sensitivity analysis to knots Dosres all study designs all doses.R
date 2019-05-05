@@ -8,7 +8,7 @@ DOSE=DOSESSRIs
 #pdf("Sensitivity analyses to knots Meta-analytic dose plots for all SSRIs and doses.pdf")
 sink("Sensitivity analyses to knots.txt")
 #matrix with each row being a different set of knots
-#knotsmatrix=rbind(c(10,20,50),c(20,60,78))
+par(mfrow=c(1,3))
 knotsmatrix=rbind(c(20,30,40),c(10,30,50),c(10,20,40),c(20,40,60),c(10,20,50),c(5,15,25),c(15,25,40))
 
 for(j in 1:dim(knotsmatrix)[1]){

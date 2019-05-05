@@ -1,27 +1,25 @@
 
 
 ####################################################################################################################
-#     Sensitivity analysis excluding age>65 and follow-up less or more than 6 to 8 weeks and high/moderate RoB studies
+#     Sensitivity analysis excluding age>=65 and follow-up less than 6 weeks and high/moderate RoB studies
 ###################################################################################################################
 
 
-sink("Sensitivity analysis excluding patients with participants older than 65 follow-up 6 to 8 weeks and high moderte RoB.txt")
+sink("Sensitivity analysis in studies with participants less than 65 years old follow-up 6 weeks or more and low RoB.txt")
 par(mfrow=c(1,3))
 
 ########################################################
 #####FOR AGE ##########################################
 ########################################################
 
-
-
 oxo<-DOSESSRIs$age>=65|is.na(DOSESSRIs$age)
 DOSE=DOSESSRIs[!oxo,]
 DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
-cat("\n \n \n DOSE RESPONSE ANALYSIS OF SSRIs in patients less than 65 years old \n \n \n")
-
 
 ##REPORTING
-
+cat("\n \n \n ****************************************************************** \n")
+cat("\n  DOSE RESPONSE ANALYSIS OF SSRIs in patients less than 65 years old  \n")
+cat("\n ****************************************************************** \n \n \n")
 cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies comparing all doses in patients less than 65 years old.", "\n"))
 
 cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
@@ -125,15 +123,16 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   ########################################################
   
   DOSESSRIs$weeks<-as.numeric(DOSESSRIs$weeks)
-  oxo<-DOSESSRIs$weeks<6|is.na(DOSESSRIs$weeks)|DOSESSRIs$weeks>8
+  oxo<-DOSESSRIs$weeks<6|is.na(DOSESSRIs$weeks)
   DOSE=DOSESSRIs[!oxo,]
   DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
-  cat("\n \n \n DOSE RESPONSE ANALYSIS OF SSRIs in studies with 6 to 8 weeks of follow-up \n \n \n")
-  
   
   ##REPORTING
+  cat("\n \n \n ****************************************************************** \n")
+  cat("\n  DOSE RESPONSE ANALYSIS OF SSRIs in studies with 6 or more weeks of follow-up  \n")
+  cat("\n ****************************************************************** \n \n \n")
   
-  cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies with 6 to 8 weeks of follow-up", "\n"))
+  cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies with 6 or more weeks of follow-up", "\n"))
   
   cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
   knots=c(10,20,50) 
@@ -235,12 +234,15 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
 
 
 ########################################################
-#####FOR RoB ############################
+#####FOR RoB ###########################################
 ########################################################
 
 ##REPORTING
-cat("\n \n \n DOSE RESPONSE ANALYSIS OF studies with low RoB \n \n \n")
 
+  cat("\n \n \n ****************************************************************** \n")
+  cat("\n  DOSE RESPONSE ANALYSIS OF studies with low RoB  \n")
+  cat("\n ****************************************************************** \n \n \n")
+  
 cat("\n \n  Frequencies of the RoB (in arms) \n \n")
 print(table(DOSESSRIs$Overall_study_RoB))
 

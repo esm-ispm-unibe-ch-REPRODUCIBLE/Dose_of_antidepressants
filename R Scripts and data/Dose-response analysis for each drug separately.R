@@ -77,7 +77,7 @@ for(i in 1:length(dis))
       #  mymoredata$logRR[2]<-mymoredata$logRR[2]-mymoredata$logRR[1]
        # mymoredata$selogRR[1]<-NA
        # }
-  
+  par(mfrow=c(1,3))
     
     #cubic splines
     tryCatch({#start tryCatch to avoid stopping with stupid errors
@@ -114,7 +114,7 @@ sink()
 ############################
 ## dropout due to AE
 ############################
-
+par(mfrow=c(1,3))
 sink("Per drug dose dropout AE.txt")
 #pdf("Per drug dose dropout AE.pdf")
 for(i in 1:length(dis)) 
@@ -196,7 +196,7 @@ sink()
 ##############
 ## Dropout
 ##############
-
+par(mfrow=c(1,3))
 sink("Per drug dose dropout.txt")
 #pdf("Per drug dose dropout.pdf")
 for(i in 1:length(dis))

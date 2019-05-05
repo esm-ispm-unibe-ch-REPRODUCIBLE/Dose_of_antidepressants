@@ -105,8 +105,6 @@ DOSEall=createdatasetdoseresponse.fun(DOSEall,Dropouts_sideeffects,No_randomised
 DOSEall=createdatasetdoseresponse.fun(DOSEall,remitters,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRrem",nameofselogRR="selogRRrem")
 
 
-#Create a database with the SSRIs in placebo-controlled trials only
-PC=unique(DOSESSRIs$Study_No)[(tapply(DOSESSRIs$Drug=="placebo",DOSESSRIs$Study_No,sum)==1)]
-DOSESSRIsPC=DOSESSRIs[DOSESSRIs$Study_No%in%PC,]
+
 
 

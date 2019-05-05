@@ -42,7 +42,7 @@ source("Functions needed in the dose-response analysis.R")
             
             
             #The following script creates the dose (fluoxetine equivalent) in the datafile DOSE
-            #It also creates a database for SSRIs, for OTHERs (DOSESSRIs, DOSEOTHERs, DOSEall), a database for SSRIs in Placebo-controlled trials only (DOSESSRIsPC)
+            #It also creates a database for SSRIs, for OTHERs (DOSESSRIs, DOSEOTHERs, DOSEall)
             # and a database DOSEj to be used for the jakubovski_ddd analysis
             source("Create dose in Griselda datafile DOSE.R")
            
@@ -66,8 +66,6 @@ source("Functions needed in the dose-response analysis.R")
             
             ####SENSITIVITY ANALYSES
             
-            # to produce graphs for all SSRIs drugs and doses together including placebo
-            source("Sensitivity analysis only Placebo-controlled  all doses.R")
             
             #Sensitivity in number and position of knots 
             source("Sensitivity analysis to knots Dosres all study designs all doses.R")

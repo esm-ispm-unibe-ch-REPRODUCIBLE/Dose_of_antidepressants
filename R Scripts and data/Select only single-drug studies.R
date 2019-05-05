@@ -2,7 +2,7 @@
 #### This little routine uses the dataset DOSE and creates a new dataset newDOSE that includes only studies the have the same drug in different doses and, 
 ## optionally, placebo. Multi-drug studies of placebo are split by dividing the placebo group
 
-
+options(warn = -1)
 newDOSE=c()# a new DOSE database
 a=split(DOSE,DOSE$Study_No)
 
@@ -48,7 +48,7 @@ for (i in 1:length(unique(DOSE$Study_No)))# loop in all studies
 
  newDOSE[,c(2:4,6,7,9,10,12,16:23,48:50)]<-lapply(newDOSE[,c(2:4,6,7,9,10,12,16:23,48:50)],as.numeric)
  rm(a,i,j,whereispla,uniquedrugs,oldStudy_No,sa)   
-    
+ options(warn = 0) 
     
     
     
